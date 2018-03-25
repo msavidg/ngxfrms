@@ -1,0 +1,18 @@
+{
+  "generator-ngx-rocket": {
+    "version": "4.0.0",
+    "props": {
+      "appName": "ngxfrms",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "projectName": "ngxfrms",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}

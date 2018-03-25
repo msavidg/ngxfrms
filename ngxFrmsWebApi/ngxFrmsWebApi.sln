@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngxFrmsWebApi", "ngxFrmsWebApi\ngxFrmsWebApi.csproj", "{541505B7-9F5C-4AD8-82C8-92525B52F8C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngxFrmsWebApi.Tests", "ngxFrmsWebApi.Tests\ngxFrmsWebApi.Tests.csproj", "{DA4D0AB9-7E52-4B26-BCA6-D277E959FC27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{541505B7-9F5C-4AD8-82C8-92525B52F8C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541505B7-9F5C-4AD8-82C8-92525B52F8C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541505B7-9F5C-4AD8-82C8-92525B52F8C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541505B7-9F5C-4AD8-82C8-92525B52F8C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4D0AB9-7E52-4B26-BCA6-D277E959FC27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4D0AB9-7E52-4B26-BCA6-D277E959FC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4D0AB9-7E52-4B26-BCA6-D277E959FC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4D0AB9-7E52-4B26-BCA6-D277E959FC27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6C8AB8F-501D-4006-B069-34658B491540}
+	EndGlobalSection
+EndGlobal

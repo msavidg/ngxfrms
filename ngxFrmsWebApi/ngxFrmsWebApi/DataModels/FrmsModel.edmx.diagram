@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="612427269abd4cd7a714904862b92d2d" Name="Diagram1">
+        <EntityTypeShape EntityType="FrmsModel.ref_FilingRequestStatus" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.ref_FilingRequestType" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.ref_StateFilingRequirementType" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.ref_StateFilingStatus" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FilingRequest" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FilingRequestCarrierXref" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FilingRequestPolicyTypeXref" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FilingRequestReplaceFormXref" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FormFilingRequest" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_FormFilingRequestFormGroupXref" Width="1.5" PointX="9.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FrmsModel.trn_StateFiling" Width="1.5" PointX="10.5" PointY="16.875" IsExpanded="true" />
+        <AssociationConnector Association="FrmsModel.FK_ref_FilingRequestStatus_ref_FilingRequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FilingRequest_ref_FilingRequestStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_ref_StateFilingRequirementType_ref_FilingRequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_ref_StateFilingStatus_ref_FilingRequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FilingRequest_ref_FilingRequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_StateFiling_ref_StateFilingRequirementType" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_StateFiling_ref_StateFilingStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK__trn_Filin__Filin__6BE40491" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FilingRequestCarrierXref_trn_FilingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FormFilingRequest_trn_FilingRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_StateFiling_trn_FilingRequest_FilingRequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="FrmsModel.FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

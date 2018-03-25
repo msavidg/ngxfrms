@@ -1,0 +1,11 @@
+<#
+    string columnId = "FilingRequestTypeId";
+    string columnName = "Code";
+    string columnDescription = "Name";
+    string connectionString = null;
+    string tableName = "ref_FilingRequestType";
+    string command = "select [FilingRequestTypeId], [Code], [Name] from [frms].[ref_FilingRequestType] order by [FilingRequestTypeId]";
+	string schema = "frms";
+	string whereclause = "Active = 1";
+#>
+<#@ include file="EnumGenerator.ttinclude" #> 

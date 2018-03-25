@@ -1,0 +1,1112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FrmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ref_FilingRequestStatus">
+          <Key>
+            <PropertyRef Name="FilingRequestStatusId" />
+          </Key>
+          <Property Name="FilingRequestStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="OrderInFlow" Type="int" Nullable="false" />
+          <Property Name="Group" Type="varchar" MaxLength="128" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="ref_FilingRequestType">
+          <Key>
+            <PropertyRef Name="FilingRequestTypeId" />
+          </Key>
+          <Property Name="FilingRequestTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="ref_StateFilingRequirementType">
+          <Key>
+            <PropertyRef Name="StateFilingRequirementTypeId" />
+          </Key>
+          <Property Name="StateFilingRequirementTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_StateFilingStatus">
+          <Key>
+            <PropertyRef Name="StateFilingStatusId" />
+          </Key>
+          <Property Name="StateFilingStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequest">
+          <Key>
+            <PropertyRef Name="FilingRequestId" />
+          </Key>
+          <Property Name="FilingRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="int" Nullable="false" />
+          <Property Name="FilingRequestStatusId" Type="int" Nullable="false" />
+          <Property Name="SubmittedBy" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="SubmittedDate" Type="datetime" Nullable="false" />
+          <Property Name="PolicyClassId" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="ComplianceFilingNumber" Type="varchar" MaxLength="64" />
+          <Property Name="ListItemId" Type="varchar" MaxLength="255" />
+          <Property Name="ListId" Type="varchar" MaxLength="255" />
+          <Property Name="TaskListId" Type="varchar" MaxLength="255" />
+          <Property Name="HistoryListId" Type="varchar" MaxLength="255" />
+          <Property Name="WorkflowId" Type="varchar" MaxLength="255" />
+          <Property Name="RequestedById" Type="int" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="SystemAffected" Type="int" />
+          <Property Name="RequestPriority" Type="int" />
+          <Property Name="PriorityJustification" Type="varchar" MaxLength="1000" />
+          <Property Name="BlockRelease" Type="bit" />
+          <Property Name="BlockReleaseReason" Type="varchar" MaxLength="1000" />
+          <Property Name="LastActivityDate" Type="datetime" />
+          <Property Name="StatusComments" Type="varchar" MaxLength="1000" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestCarrierXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestId" Type="int" Nullable="false" />
+          <Property Name="CarrierId" Type="int" Nullable="false" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestPolicyTypeXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestId" Type="int" Nullable="false" />
+          <Property Name="PolicyTypeId" Type="int" Nullable="false" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestReplaceFormXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestId" Type="int" Nullable="false" />
+          <Property Name="BaseFormIdString" Type="varchar" MaxLength="50" />
+          <Property Name="FormEditionId" Type="varchar" MaxLength="50" />
+          <Property Name="EditionDate" Type="datetime" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trn_FormFilingRequest">
+          <Key>
+            <PropertyRef Name="FormFilingRequestId" />
+          </Key>
+          <Property Name="FormFilingRequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestId" Type="int" Nullable="false" />
+          <Property Name="DocumentTypeId" Type="int" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="FormClassId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="2500" />
+          <Property Name="FormIdString" Type="varchar" MaxLength="1000" />
+          <Property Name="BaseFormIdString" Type="varchar" MaxLength="50" />
+          <Property Name="EffectiveDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="EditionDate" Type="datetime" />
+          <Property Name="FormType" Type="char" MaxLength="1" />
+          <Property Name="CanHaveMultiples" Type="bit" Nullable="false" />
+          <Property Name="AdobeId" Type="varchar" MaxLength="255" />
+          <Property Name="AppliesToSubmission" Type="int" Nullable="false" />
+          <Property Name="AppliesToQuote" Type="int" Nullable="false" />
+          <Property Name="AppliesToBinder" Type="int" Nullable="false" />
+          <Property Name="AppliesToPolicy" Type="int" Nullable="false" />
+          <Property Name="AppliesToEndorsement" Type="int" Nullable="false" />
+          <Property Name="IsCommon" Type="bit" Nullable="false" />
+          <Property Name="IsPremiumBearing" Type="bit" Nullable="false" />
+          <Property Name="IncludeTermsOnQB" Type="bit" Nullable="false" />
+          <Property Name="IncludeTermsOnDecPage" Type="bit" Nullable="false" />
+          <Property Name="SubjectivityFormId" Type="int" />
+          <Property Name="SubjectivityDefaultText" Type="text" />
+          <Property Name="OrderWithinClass" Type="int" />
+          <Property Name="FormDefaultComment" Type="text" />
+          <Property Name="SpecialBehavior" Type="text" />
+          <Property Name="SubCategory" Type="varchar" MaxLength="150" />
+          <Property Name="Broadens" Type="bit" Nullable="false" />
+          <Property Name="Restricts" Type="bit" Nullable="false" />
+          <Property Name="Clarifies" Type="bit" Nullable="false" />
+          <Property Name="WatermarkOnQuote" Type="bit" Nullable="false" />
+          <Property Name="WatermarkOnBinder" Type="bit" Nullable="false" />
+          <Property Name="WatermarkOnPolicy" Type="bit" Nullable="false" />
+          <Property Name="WatermarkOnEndorsement" Type="bit" Nullable="false" />
+          <Property Name="HasUserFillIns" Type="bit" Nullable="false" />
+          <Property Name="HasSystemFillIns" Type="bit" Nullable="false" />
+          <Property Name="ChangeDetails" Type="varchar(max)" />
+          <Property Name="PurposeOfForm" Type="text" />
+          <Property Name="ShortName" Type="varchar" MaxLength="100" />
+          <Property Name="ClaimsApprovalRequired" Type="bit" />
+          <Property Name="IsNewForm" Type="bit" />
+          <Property Name="ReplacesExistingForm" Type="bit" />
+          <Property Name="ReplacesExisitingFormExpiryDate" Type="datetime" />
+          <Property Name="ReplacesExistingFormName" Type="varchar" MaxLength="50" />
+          <Property Name="ReplacesExistingFormEditionDate" Type="datetime" />
+          <Property Name="RelatedFilingRequest" Type="int" />
+          <Property Name="Mandatory" Type="bit" />
+          <Property Name="Optional" Type="bit" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="RetainUserFillIns" Type="bit" Nullable="false" />
+          <Property Name="IncludeDataOnQuote" Type="bit" Nullable="false" />
+          <Property Name="IncludeDataOnBinder" Type="bit" Nullable="false" />
+          <Property Name="IncludeDataOnPolicy" Type="bit" Nullable="false" />
+          <Property Name="IncludeDataOnEndorsement" Type="bit" Nullable="false" />
+          <Property Name="BypassWorkFlow" Type="bit" />
+          <Property Name="NavigateFormEditionID" Type="uniqueidentifier" />
+          <Property Name="ExistingFormsEditionID" Type="uniqueidentifier" />
+          <Property Name="UATRejection" Type="int" />
+          <Property Name="ChangeRequest" Type="int" />
+          <Property Name="FormTemplateId" Type="int" />
+        </EntityType>
+        <EntityType Name="trn_FormFilingRequestFormGroupXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormFilingRequestId" Type="int" Nullable="false" />
+          <Property Name="FormGroupId" Type="int" Nullable="false" />
+          <Property Name="AuditLastModified" Type="datetime" Nullable="false" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trn_StateFiling">
+          <Key>
+            <PropertyRef Name="StateFilingId" />
+          </Key>
+          <Property Name="StateFilingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilingRequestId" Type="int" Nullable="false" />
+          <Property Name="FilingDate" Type="datetime" />
+          <Property Name="ApprovalDate" Type="datetime" />
+          <Property Name="NavigateFormEffectiveDate" Type="datetime" />
+          <Property Name="StateFilingStatusId" Type="int" Nullable="false" />
+          <Property Name="StateFilingRequirementTypeId" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="varchar(max)" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="AuditLastModified" Type="datetime" />
+          <Property Name="AuditLastModifiedBy" Type="varchar" MaxLength="64" />
+          <Property Name="CarrierID" Type="int" />
+          <Property Name="ProductionReleaseDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__trn_Filin__Filin__6BE40491">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestReplaceFormXref" Type="Self.trn_FilingRequestReplaceFormXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestReplaceFormXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_FilingRequestStatus_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="ref_FilingRequestStatus" Type="Self.ref_FilingRequestStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_FilingRequestStatus">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_StateFilingRequirementType_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="ref_StateFilingRequirementType" Type="Self.ref_StateFilingRequirementType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_StateFilingRequirementType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_StateFilingStatus_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="0..1" />
+          <End Role="ref_StateFilingStatus" Type="Self.ref_StateFilingStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_StateFilingStatus">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequest_ref_FilingRequestStatus">
+          <End Role="ref_FilingRequestStatus" Type="Self.ref_FilingRequestStatus" Multiplicity="1" />
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestStatus">
+              <PropertyRef Name="FilingRequestStatusId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequest_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequestCarrierXref_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestCarrierXref" Type="Self.trn_FilingRequestCarrierXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestCarrierXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestPolicyTypeXref" Type="Self.trn_FilingRequestPolicyTypeXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestPolicyTypeXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FormFilingRequest_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FormFilingRequest" Type="Self.trn_FormFilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FormFilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest">
+          <End Role="trn_FormFilingRequest" Type="Self.trn_FormFilingRequest" Multiplicity="1" />
+          <End Role="trn_FormFilingRequestFormGroupXref" Type="Self.trn_FormFilingRequestFormGroupXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FormFilingRequest">
+              <PropertyRef Name="FormFilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FormFilingRequestFormGroupXref">
+              <PropertyRef Name="FormFilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_ref_StateFilingRequirementType">
+          <End Role="ref_StateFilingRequirementType" Type="Self.ref_StateFilingRequirementType" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_StateFilingRequirementType">
+              <PropertyRef Name="StateFilingRequirementTypeId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="StateFilingRequirementTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_ref_StateFilingStatus">
+          <End Role="ref_StateFilingStatus" Type="Self.ref_StateFilingStatus" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_StateFilingStatus">
+              <PropertyRef Name="StateFilingStatusId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="StateFilingStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_trn_FilingRequest_FilingRequestId">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FrmsModelStoreContainer">
+          <EntitySet Name="ref_FilingRequestStatus" EntityType="Self.ref_FilingRequestStatus" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="ref_FilingRequestType" EntityType="Self.ref_FilingRequestType" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="ref_StateFilingRequirementType" EntityType="Self.ref_StateFilingRequirementType" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="ref_StateFilingStatus" EntityType="Self.ref_StateFilingStatus" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FilingRequest" EntityType="Self.trn_FilingRequest" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FilingRequestCarrierXref" EntityType="Self.trn_FilingRequestCarrierXref" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FilingRequestPolicyTypeXref" EntityType="Self.trn_FilingRequestPolicyTypeXref" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FilingRequestReplaceFormXref" EntityType="Self.trn_FilingRequestReplaceFormXref" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FormFilingRequest" EntityType="Self.trn_FormFilingRequest" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_FormFilingRequestFormGroupXref" EntityType="Self.trn_FormFilingRequestFormGroupXref" Schema="frms" store:Type="Tables" />
+          <EntitySet Name="trn_StateFiling" EntityType="Self.trn_StateFiling" Schema="frms" store:Type="Tables" />
+          <AssociationSet Name="FK__trn_Filin__Filin__6BE40491" Association="Self.FK__trn_Filin__Filin__6BE40491">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestReplaceFormXref" EntitySet="trn_FilingRequestReplaceFormXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_FilingRequestStatus_ref_FilingRequestType" Association="Self.FK_ref_FilingRequestStatus_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_FilingRequestStatus" EntitySet="ref_FilingRequestStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_StateFilingRequirementType_ref_FilingRequestType" Association="Self.FK_ref_StateFilingRequirementType_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_StateFilingRequirementType" EntitySet="ref_StateFilingRequirementType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_StateFilingStatus_ref_FilingRequestType" Association="Self.FK_ref_StateFilingStatus_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_StateFilingStatus" EntitySet="ref_StateFilingStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequest_ref_FilingRequestStatus" Association="Self.FK_trn_FilingRequest_ref_FilingRequestStatus">
+            <End Role="ref_FilingRequestStatus" EntitySet="ref_FilingRequestStatus" />
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequest_ref_FilingRequestType" Association="Self.FK_trn_FilingRequest_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequestCarrierXref_trn_FilingRequest" Association="Self.FK_trn_FilingRequestCarrierXref_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestCarrierXref" EntitySet="trn_FilingRequestCarrierXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest" Association="Self.FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestPolicyTypeXref" EntitySet="trn_FilingRequestPolicyTypeXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FormFilingRequest_trn_FilingRequest" Association="Self.FK_trn_FormFilingRequest_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FormFilingRequest" EntitySet="trn_FormFilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest" Association="Self.FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest">
+            <End Role="trn_FormFilingRequest" EntitySet="trn_FormFilingRequest" />
+            <End Role="trn_FormFilingRequestFormGroupXref" EntitySet="trn_FormFilingRequestFormGroupXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_ref_StateFilingRequirementType" Association="Self.FK_trn_StateFiling_ref_StateFilingRequirementType">
+            <End Role="ref_StateFilingRequirementType" EntitySet="ref_StateFilingRequirementType" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_ref_StateFilingStatus" Association="Self.FK_trn_StateFiling_ref_StateFilingStatus">
+            <End Role="ref_StateFilingStatus" EntitySet="ref_StateFilingStatus" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_trn_FilingRequest_FilingRequestId" Association="Self.FK_trn_StateFiling_trn_FilingRequest_FilingRequestId">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FrmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ref_FilingRequestStatus">
+          <Key>
+            <PropertyRef Name="FilingRequestStatusId" />
+          </Key>
+          <Property Name="FilingRequestStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderInFlow" Type="Int32" Nullable="false" />
+          <Property Name="Group" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="ref_FilingRequestType" Relationship="Self.FK_ref_FilingRequestStatus_ref_FilingRequestType" FromRole="ref_FilingRequestStatus" ToRole="ref_FilingRequestType" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_FilingRequest_ref_FilingRequestStatus" FromRole="ref_FilingRequestStatus" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <EntityType Name="ref_FilingRequestType">
+          <Key>
+            <PropertyRef Name="FilingRequestTypeId" />
+          </Key>
+          <Property Name="FilingRequestTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="ref_FilingRequestStatus" Relationship="Self.FK_ref_FilingRequestStatus_ref_FilingRequestType" FromRole="ref_FilingRequestType" ToRole="ref_FilingRequestStatus" />
+          <NavigationProperty Name="ref_StateFilingRequirementType" Relationship="Self.FK_ref_StateFilingRequirementType_ref_FilingRequestType" FromRole="ref_FilingRequestType" ToRole="ref_StateFilingRequirementType" />
+          <NavigationProperty Name="ref_StateFilingStatus" Relationship="Self.FK_ref_StateFilingStatus_ref_FilingRequestType" FromRole="ref_FilingRequestType" ToRole="ref_StateFilingStatus" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_FilingRequest_ref_FilingRequestType" FromRole="ref_FilingRequestType" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <EntityType Name="ref_StateFilingRequirementType">
+          <Key>
+            <PropertyRef Name="StateFilingRequirementTypeId" />
+          </Key>
+          <Property Name="StateFilingRequirementTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ref_FilingRequestType" Relationship="Self.FK_ref_StateFilingRequirementType_ref_FilingRequestType" FromRole="ref_StateFilingRequirementType" ToRole="ref_FilingRequestType" />
+          <NavigationProperty Name="trn_StateFiling" Relationship="Self.FK_trn_StateFiling_ref_StateFilingRequirementType" FromRole="ref_StateFilingRequirementType" ToRole="trn_StateFiling" />
+        </EntityType>
+        <EntityType Name="ref_StateFilingStatus">
+          <Key>
+            <PropertyRef Name="StateFilingStatusId" />
+          </Key>
+          <Property Name="StateFilingStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FilingRequestTypeId" Type="Int32" />
+          <NavigationProperty Name="ref_FilingRequestType" Relationship="Self.FK_ref_StateFilingStatus_ref_FilingRequestType" FromRole="ref_StateFilingStatus" ToRole="ref_FilingRequestType" />
+          <NavigationProperty Name="trn_StateFiling" Relationship="Self.FK_trn_StateFiling_ref_StateFilingStatus" FromRole="ref_StateFilingStatus" ToRole="trn_StateFiling" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequest">
+          <Key>
+            <PropertyRef Name="FilingRequestId" />
+          </Key>
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FilingRequestStatusId" Type="Int32" Nullable="false" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PolicyClassId" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ComplianceFilingNumber" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="ListItemId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ListId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TaskListId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HistoryListId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WorkflowId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RequestedById" Type="Int32" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SystemAffected" Type="Int32" />
+          <Property Name="RequestPriority" Type="Int32" />
+          <Property Name="PriorityJustification" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="BlockRelease" Type="Boolean" />
+          <Property Name="BlockReleaseReason" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusComments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ref_FilingRequestStatus" Relationship="Self.FK_trn_FilingRequest_ref_FilingRequestStatus" FromRole="trn_FilingRequest" ToRole="ref_FilingRequestStatus" />
+          <NavigationProperty Name="ref_FilingRequestType" Relationship="Self.FK_trn_FilingRequest_ref_FilingRequestType" FromRole="trn_FilingRequest" ToRole="ref_FilingRequestType" />
+          <NavigationProperty Name="trn_FilingRequestReplaceFormXref" Relationship="Self.FK__trn_Filin__Filin__6BE40491" FromRole="trn_FilingRequest" ToRole="trn_FilingRequestReplaceFormXref" />
+          <NavigationProperty Name="trn_FilingRequestCarrierXref" Relationship="Self.FK_trn_FilingRequestCarrierXref_trn_FilingRequest" FromRole="trn_FilingRequest" ToRole="trn_FilingRequestCarrierXref" />
+          <NavigationProperty Name="trn_FilingRequestPolicyTypeXref" Relationship="Self.FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest" FromRole="trn_FilingRequest" ToRole="trn_FilingRequestPolicyTypeXref" />
+          <NavigationProperty Name="trn_FormFilingRequest" Relationship="Self.FK_trn_FormFilingRequest_trn_FilingRequest" FromRole="trn_FilingRequest" ToRole="trn_FormFilingRequest" />
+          <NavigationProperty Name="trn_StateFiling" Relationship="Self.FK_trn_StateFiling_trn_FilingRequest_FilingRequestId" FromRole="trn_FilingRequest" ToRole="trn_StateFiling" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestCarrierXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="CarrierId" Type="Int32" Nullable="false" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_FilingRequestCarrierXref_trn_FilingRequest" FromRole="trn_FilingRequestCarrierXref" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestPolicyTypeXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest" FromRole="trn_FilingRequestPolicyTypeXref" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <EntityType Name="trn_FilingRequestReplaceFormXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="BaseFormIdString" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FormEditionId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EditionDate" Type="DateTime" Precision="3" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK__trn_Filin__Filin__6BE40491" FromRole="trn_FilingRequestReplaceFormXref" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <EntityType Name="trn_FormFilingRequest">
+          <Key>
+            <PropertyRef Name="FormFilingRequestId" />
+          </Key>
+          <Property Name="FormFilingRequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="FormClassId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
+          <Property Name="FormIdString" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="BaseFormIdString" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="EditionDate" Type="DateTime" Precision="3" />
+          <Property Name="FormType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanHaveMultiples" Type="Boolean" Nullable="false" />
+          <Property Name="AdobeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AppliesToSubmission" Type="Int32" Nullable="false" />
+          <Property Name="AppliesToQuote" Type="Int32" Nullable="false" />
+          <Property Name="AppliesToBinder" Type="Int32" Nullable="false" />
+          <Property Name="AppliesToPolicy" Type="Int32" Nullable="false" />
+          <Property Name="AppliesToEndorsement" Type="Int32" Nullable="false" />
+          <Property Name="IsCommon" Type="Boolean" Nullable="false" />
+          <Property Name="IsPremiumBearing" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeTermsOnQB" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeTermsOnDecPage" Type="Boolean" Nullable="false" />
+          <Property Name="SubjectivityFormId" Type="Int32" />
+          <Property Name="SubjectivityDefaultText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrderWithinClass" Type="Int32" />
+          <Property Name="FormDefaultComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialBehavior" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategory" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Broadens" Type="Boolean" Nullable="false" />
+          <Property Name="Restricts" Type="Boolean" Nullable="false" />
+          <Property Name="Clarifies" Type="Boolean" Nullable="false" />
+          <Property Name="WatermarkOnQuote" Type="Boolean" Nullable="false" />
+          <Property Name="WatermarkOnBinder" Type="Boolean" Nullable="false" />
+          <Property Name="WatermarkOnPolicy" Type="Boolean" Nullable="false" />
+          <Property Name="WatermarkOnEndorsement" Type="Boolean" Nullable="false" />
+          <Property Name="HasUserFillIns" Type="Boolean" Nullable="false" />
+          <Property Name="HasSystemFillIns" Type="Boolean" Nullable="false" />
+          <Property Name="ChangeDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PurposeOfForm" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ShortName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimsApprovalRequired" Type="Boolean" />
+          <Property Name="IsNewForm" Type="Boolean" />
+          <Property Name="ReplacesExistingForm" Type="Boolean" />
+          <Property Name="ReplacesExisitingFormExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ReplacesExistingFormName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReplacesExistingFormEditionDate" Type="DateTime" Precision="3" />
+          <Property Name="RelatedFilingRequest" Type="Int32" />
+          <Property Name="Mandatory" Type="Boolean" />
+          <Property Name="Optional" Type="Boolean" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RetainUserFillIns" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeDataOnQuote" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeDataOnBinder" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeDataOnPolicy" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeDataOnEndorsement" Type="Boolean" Nullable="false" />
+          <Property Name="BypassWorkFlow" Type="Boolean" />
+          <Property Name="NavigateFormEditionID" Type="Guid" />
+          <Property Name="ExistingFormsEditionID" Type="Guid" />
+          <Property Name="UATRejection" Type="Int32" />
+          <Property Name="ChangeRequest" Type="Int32" />
+          <Property Name="FormTemplateId" Type="Int32" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_FormFilingRequest_trn_FilingRequest" FromRole="trn_FormFilingRequest" ToRole="trn_FilingRequest" />
+          <NavigationProperty Name="trn_FormFilingRequestFormGroupXref" Relationship="Self.FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest" FromRole="trn_FormFilingRequest" ToRole="trn_FormFilingRequestFormGroupXref" />
+        </EntityType>
+        <EntityType Name="trn_FormFilingRequestFormGroupXref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormFilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="FormGroupId" Type="Int32" Nullable="false" />
+          <Property Name="AuditLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="trn_FormFilingRequest" Relationship="Self.FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest" FromRole="trn_FormFilingRequestFormGroupXref" ToRole="trn_FormFilingRequest" />
+        </EntityType>
+        <EntityType Name="trn_StateFiling">
+          <Key>
+            <PropertyRef Name="StateFilingId" />
+          </Key>
+          <Property Name="StateFilingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilingRequestId" Type="Int32" Nullable="false" />
+          <Property Name="FilingDate" Type="DateTime" Precision="3" />
+          <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+          <Property Name="NavigateFormEffectiveDate" Type="DateTime" Precision="3" />
+          <Property Name="StateFilingStatusId" Type="Int32" Nullable="false" />
+          <Property Name="StateFilingRequirementTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="AuditLastModified" Type="DateTime" Precision="3" />
+          <Property Name="AuditLastModifiedBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CarrierID" Type="Int32" />
+          <Property Name="ProductionReleaseDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ref_StateFilingRequirementType" Relationship="Self.FK_trn_StateFiling_ref_StateFilingRequirementType" FromRole="trn_StateFiling" ToRole="ref_StateFilingRequirementType" />
+          <NavigationProperty Name="ref_StateFilingStatus" Relationship="Self.FK_trn_StateFiling_ref_StateFilingStatus" FromRole="trn_StateFiling" ToRole="ref_StateFilingStatus" />
+          <NavigationProperty Name="trn_FilingRequest" Relationship="Self.FK_trn_StateFiling_trn_FilingRequest_FilingRequestId" FromRole="trn_StateFiling" ToRole="trn_FilingRequest" />
+        </EntityType>
+        <Association Name="FK_ref_FilingRequestStatus_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="ref_FilingRequestStatus" Type="Self.ref_FilingRequestStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_FilingRequestStatus">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequest_ref_FilingRequestStatus">
+          <End Role="ref_FilingRequestStatus" Type="Self.ref_FilingRequestStatus" Multiplicity="1" />
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestStatus">
+              <PropertyRef Name="FilingRequestStatusId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_StateFilingRequirementType_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="ref_StateFilingRequirementType" Type="Self.ref_StateFilingRequirementType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_StateFilingRequirementType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_StateFilingStatus_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="0..1" />
+          <End Role="ref_StateFilingStatus" Type="Self.ref_StateFilingStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="ref_StateFilingStatus">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequest_ref_FilingRequestType">
+          <End Role="ref_FilingRequestType" Type="Self.ref_FilingRequestType" Multiplicity="1" />
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_FilingRequestType">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_ref_StateFilingRequirementType">
+          <End Role="ref_StateFilingRequirementType" Type="Self.ref_StateFilingRequirementType" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_StateFilingRequirementType">
+              <PropertyRef Name="StateFilingRequirementTypeId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="StateFilingRequirementTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_ref_StateFilingStatus">
+          <End Role="ref_StateFilingStatus" Type="Self.ref_StateFilingStatus" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_StateFilingStatus">
+              <PropertyRef Name="StateFilingStatusId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="StateFilingStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__trn_Filin__Filin__6BE40491">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestReplaceFormXref" Type="Self.trn_FilingRequestReplaceFormXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestReplaceFormXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequestCarrierXref_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestCarrierXref" Type="Self.trn_FilingRequestCarrierXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestCarrierXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FilingRequestPolicyTypeXref" Type="Self.trn_FilingRequestPolicyTypeXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FilingRequestPolicyTypeXref">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FormFilingRequest_trn_FilingRequest">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_FormFilingRequest" Type="Self.trn_FormFilingRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FormFilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_StateFiling_trn_FilingRequest_FilingRequestId">
+          <End Role="trn_FilingRequest" Type="Self.trn_FilingRequest" Multiplicity="1" />
+          <End Role="trn_StateFiling" Type="Self.trn_StateFiling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FilingRequest">
+              <PropertyRef Name="FilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_StateFiling">
+              <PropertyRef Name="FilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest">
+          <End Role="trn_FormFilingRequest" Type="Self.trn_FormFilingRequest" Multiplicity="1" />
+          <End Role="trn_FormFilingRequestFormGroupXref" Type="Self.trn_FormFilingRequestFormGroupXref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trn_FormFilingRequest">
+              <PropertyRef Name="FormFilingRequestId" />
+            </Principal>
+            <Dependent Role="trn_FormFilingRequestFormGroupXref">
+              <PropertyRef Name="FormFilingRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FrmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ref_FilingRequestStatus" EntityType="Self.ref_FilingRequestStatus" />
+          <EntitySet Name="ref_FilingRequestType" EntityType="Self.ref_FilingRequestType" />
+          <EntitySet Name="ref_StateFilingRequirementType" EntityType="Self.ref_StateFilingRequirementType" />
+          <EntitySet Name="ref_StateFilingStatus" EntityType="Self.ref_StateFilingStatus" />
+          <EntitySet Name="trn_FilingRequest" EntityType="Self.trn_FilingRequest" />
+          <EntitySet Name="trn_FilingRequestCarrierXref" EntityType="Self.trn_FilingRequestCarrierXref" />
+          <EntitySet Name="trn_FilingRequestPolicyTypeXref" EntityType="Self.trn_FilingRequestPolicyTypeXref" />
+          <EntitySet Name="trn_FilingRequestReplaceFormXref" EntityType="Self.trn_FilingRequestReplaceFormXref" />
+          <EntitySet Name="trn_FormFilingRequest" EntityType="Self.trn_FormFilingRequest" />
+          <EntitySet Name="trn_FormFilingRequestFormGroupXref" EntityType="Self.trn_FormFilingRequestFormGroupXref" />
+          <EntitySet Name="trn_StateFiling" EntityType="Self.trn_StateFiling" />
+          <AssociationSet Name="FK_ref_FilingRequestStatus_ref_FilingRequestType" Association="Self.FK_ref_FilingRequestStatus_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_FilingRequestStatus" EntitySet="ref_FilingRequestStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequest_ref_FilingRequestStatus" Association="Self.FK_trn_FilingRequest_ref_FilingRequestStatus">
+            <End Role="ref_FilingRequestStatus" EntitySet="ref_FilingRequestStatus" />
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_StateFilingRequirementType_ref_FilingRequestType" Association="Self.FK_ref_StateFilingRequirementType_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_StateFilingRequirementType" EntitySet="ref_StateFilingRequirementType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_StateFilingStatus_ref_FilingRequestType" Association="Self.FK_ref_StateFilingStatus_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="ref_StateFilingStatus" EntitySet="ref_StateFilingStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequest_ref_FilingRequestType" Association="Self.FK_trn_FilingRequest_ref_FilingRequestType">
+            <End Role="ref_FilingRequestType" EntitySet="ref_FilingRequestType" />
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_ref_StateFilingRequirementType" Association="Self.FK_trn_StateFiling_ref_StateFilingRequirementType">
+            <End Role="ref_StateFilingRequirementType" EntitySet="ref_StateFilingRequirementType" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_ref_StateFilingStatus" Association="Self.FK_trn_StateFiling_ref_StateFilingStatus">
+            <End Role="ref_StateFilingStatus" EntitySet="ref_StateFilingStatus" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+          <AssociationSet Name="FK__trn_Filin__Filin__6BE40491" Association="Self.FK__trn_Filin__Filin__6BE40491">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestReplaceFormXref" EntitySet="trn_FilingRequestReplaceFormXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequestCarrierXref_trn_FilingRequest" Association="Self.FK_trn_FilingRequestCarrierXref_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestCarrierXref" EntitySet="trn_FilingRequestCarrierXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest" Association="Self.FK_trn_FilingRequestPolicyTypeXref_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FilingRequestPolicyTypeXref" EntitySet="trn_FilingRequestPolicyTypeXref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FormFilingRequest_trn_FilingRequest" Association="Self.FK_trn_FormFilingRequest_trn_FilingRequest">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_FormFilingRequest" EntitySet="trn_FormFilingRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_StateFiling_trn_FilingRequest_FilingRequestId" Association="Self.FK_trn_StateFiling_trn_FilingRequest_FilingRequestId">
+            <End Role="trn_FilingRequest" EntitySet="trn_FilingRequest" />
+            <End Role="trn_StateFiling" EntitySet="trn_StateFiling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest" Association="Self.FK_trn_FormFilingRequestFormGroupXref_trn_FormFilingRequest">
+            <End Role="trn_FormFilingRequest" EntitySet="trn_FormFilingRequest" />
+            <End Role="trn_FormFilingRequestFormGroupXref" EntitySet="trn_FormFilingRequestFormGroupXref" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FrmsModelStoreContainer" CdmEntityContainer="FrmsEntities">
+          <EntitySetMapping Name="ref_FilingRequestStatus">
+            <EntityTypeMapping TypeName="FrmsModel.ref_FilingRequestStatus">
+              <MappingFragment StoreEntitySet="ref_FilingRequestStatus">
+                <ScalarProperty Name="FilingRequestStatusId" ColumnName="FilingRequestStatusId" />
+                <ScalarProperty Name="FilingRequestTypeId" ColumnName="FilingRequestTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderInFlow" ColumnName="OrderInFlow" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_FilingRequestType">
+            <EntityTypeMapping TypeName="FrmsModel.ref_FilingRequestType">
+              <MappingFragment StoreEntitySet="ref_FilingRequestType">
+                <ScalarProperty Name="FilingRequestTypeId" ColumnName="FilingRequestTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_StateFilingRequirementType">
+            <EntityTypeMapping TypeName="FrmsModel.ref_StateFilingRequirementType">
+              <MappingFragment StoreEntitySet="ref_StateFilingRequirementType">
+                <ScalarProperty Name="StateFilingRequirementTypeId" ColumnName="StateFilingRequirementTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FilingRequestTypeId" ColumnName="FilingRequestTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_StateFilingStatus">
+            <EntityTypeMapping TypeName="FrmsModel.ref_StateFilingStatus">
+              <MappingFragment StoreEntitySet="ref_StateFilingStatus">
+                <ScalarProperty Name="StateFilingStatusId" ColumnName="StateFilingStatusId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FilingRequestTypeId" ColumnName="FilingRequestTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FilingRequest">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FilingRequest">
+              <MappingFragment StoreEntitySet="trn_FilingRequest">
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="FilingRequestTypeId" ColumnName="FilingRequestTypeId" />
+                <ScalarProperty Name="FilingRequestStatusId" ColumnName="FilingRequestStatusId" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="PolicyClassId" ColumnName="PolicyClassId" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ComplianceFilingNumber" ColumnName="ComplianceFilingNumber" />
+                <ScalarProperty Name="ListItemId" ColumnName="ListItemId" />
+                <ScalarProperty Name="ListId" ColumnName="ListId" />
+                <ScalarProperty Name="TaskListId" ColumnName="TaskListId" />
+                <ScalarProperty Name="HistoryListId" ColumnName="HistoryListId" />
+                <ScalarProperty Name="WorkflowId" ColumnName="WorkflowId" />
+                <ScalarProperty Name="RequestedById" ColumnName="RequestedById" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+                <ScalarProperty Name="SystemAffected" ColumnName="SystemAffected" />
+                <ScalarProperty Name="RequestPriority" ColumnName="RequestPriority" />
+                <ScalarProperty Name="PriorityJustification" ColumnName="PriorityJustification" />
+                <ScalarProperty Name="BlockRelease" ColumnName="BlockRelease" />
+                <ScalarProperty Name="BlockReleaseReason" ColumnName="BlockReleaseReason" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FilingRequestCarrierXref">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FilingRequestCarrierXref">
+              <MappingFragment StoreEntitySet="trn_FilingRequestCarrierXref">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FilingRequestPolicyTypeXref">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FilingRequestPolicyTypeXref">
+              <MappingFragment StoreEntitySet="trn_FilingRequestPolicyTypeXref">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="PolicyTypeId" ColumnName="PolicyTypeId" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FilingRequestReplaceFormXref">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FilingRequestReplaceFormXref">
+              <MappingFragment StoreEntitySet="trn_FilingRequestReplaceFormXref">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="BaseFormIdString" ColumnName="BaseFormIdString" />
+                <ScalarProperty Name="FormEditionId" ColumnName="FormEditionId" />
+                <ScalarProperty Name="EditionDate" ColumnName="EditionDate" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FormFilingRequest">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FormFilingRequest">
+              <MappingFragment StoreEntitySet="trn_FormFilingRequest">
+                <ScalarProperty Name="FormFilingRequestId" ColumnName="FormFilingRequestId" />
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="FormClassId" ColumnName="FormClassId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FormIdString" ColumnName="FormIdString" />
+                <ScalarProperty Name="BaseFormIdString" ColumnName="BaseFormIdString" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="EditionDate" ColumnName="EditionDate" />
+                <ScalarProperty Name="FormType" ColumnName="FormType" />
+                <ScalarProperty Name="CanHaveMultiples" ColumnName="CanHaveMultiples" />
+                <ScalarProperty Name="AdobeId" ColumnName="AdobeId" />
+                <ScalarProperty Name="AppliesToSubmission" ColumnName="AppliesToSubmission" />
+                <ScalarProperty Name="AppliesToQuote" ColumnName="AppliesToQuote" />
+                <ScalarProperty Name="AppliesToBinder" ColumnName="AppliesToBinder" />
+                <ScalarProperty Name="AppliesToPolicy" ColumnName="AppliesToPolicy" />
+                <ScalarProperty Name="AppliesToEndorsement" ColumnName="AppliesToEndorsement" />
+                <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
+                <ScalarProperty Name="IsPremiumBearing" ColumnName="IsPremiumBearing" />
+                <ScalarProperty Name="IncludeTermsOnQB" ColumnName="IncludeTermsOnQB" />
+                <ScalarProperty Name="IncludeTermsOnDecPage" ColumnName="IncludeTermsOnDecPage" />
+                <ScalarProperty Name="SubjectivityFormId" ColumnName="SubjectivityFormId" />
+                <ScalarProperty Name="SubjectivityDefaultText" ColumnName="SubjectivityDefaultText" />
+                <ScalarProperty Name="OrderWithinClass" ColumnName="OrderWithinClass" />
+                <ScalarProperty Name="FormDefaultComment" ColumnName="FormDefaultComment" />
+                <ScalarProperty Name="SpecialBehavior" ColumnName="SpecialBehavior" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="Broadens" ColumnName="Broadens" />
+                <ScalarProperty Name="Restricts" ColumnName="Restricts" />
+                <ScalarProperty Name="Clarifies" ColumnName="Clarifies" />
+                <ScalarProperty Name="WatermarkOnQuote" ColumnName="WatermarkOnQuote" />
+                <ScalarProperty Name="WatermarkOnBinder" ColumnName="WatermarkOnBinder" />
+                <ScalarProperty Name="WatermarkOnPolicy" ColumnName="WatermarkOnPolicy" />
+                <ScalarProperty Name="WatermarkOnEndorsement" ColumnName="WatermarkOnEndorsement" />
+                <ScalarProperty Name="HasUserFillIns" ColumnName="HasUserFillIns" />
+                <ScalarProperty Name="HasSystemFillIns" ColumnName="HasSystemFillIns" />
+                <ScalarProperty Name="ChangeDetails" ColumnName="ChangeDetails" />
+                <ScalarProperty Name="PurposeOfForm" ColumnName="PurposeOfForm" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="ClaimsApprovalRequired" ColumnName="ClaimsApprovalRequired" />
+                <ScalarProperty Name="IsNewForm" ColumnName="IsNewForm" />
+                <ScalarProperty Name="ReplacesExistingForm" ColumnName="ReplacesExistingForm" />
+                <ScalarProperty Name="ReplacesExisitingFormExpiryDate" ColumnName="ReplacesExisitingFormExpiryDate" />
+                <ScalarProperty Name="ReplacesExistingFormName" ColumnName="ReplacesExistingFormName" />
+                <ScalarProperty Name="ReplacesExistingFormEditionDate" ColumnName="ReplacesExistingFormEditionDate" />
+                <ScalarProperty Name="RelatedFilingRequest" ColumnName="RelatedFilingRequest" />
+                <ScalarProperty Name="Mandatory" ColumnName="Mandatory" />
+                <ScalarProperty Name="Optional" ColumnName="Optional" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+                <ScalarProperty Name="RetainUserFillIns" ColumnName="RetainUserFillIns" />
+                <ScalarProperty Name="IncludeDataOnQuote" ColumnName="IncludeDataOnQuote" />
+                <ScalarProperty Name="IncludeDataOnBinder" ColumnName="IncludeDataOnBinder" />
+                <ScalarProperty Name="IncludeDataOnPolicy" ColumnName="IncludeDataOnPolicy" />
+                <ScalarProperty Name="IncludeDataOnEndorsement" ColumnName="IncludeDataOnEndorsement" />
+                <ScalarProperty Name="BypassWorkFlow" ColumnName="BypassWorkFlow" />
+                <ScalarProperty Name="NavigateFormEditionID" ColumnName="NavigateFormEditionID" />
+                <ScalarProperty Name="ExistingFormsEditionID" ColumnName="ExistingFormsEditionID" />
+                <ScalarProperty Name="UATRejection" ColumnName="UATRejection" />
+                <ScalarProperty Name="ChangeRequest" ColumnName="ChangeRequest" />
+                <ScalarProperty Name="FormTemplateId" ColumnName="FormTemplateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_FormFilingRequestFormGroupXref">
+            <EntityTypeMapping TypeName="FrmsModel.trn_FormFilingRequestFormGroupXref">
+              <MappingFragment StoreEntitySet="trn_FormFilingRequestFormGroupXref">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FormFilingRequestId" ColumnName="FormFilingRequestId" />
+                <ScalarProperty Name="FormGroupId" ColumnName="FormGroupId" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trn_StateFiling">
+            <EntityTypeMapping TypeName="FrmsModel.trn_StateFiling">
+              <MappingFragment StoreEntitySet="trn_StateFiling">
+                <ScalarProperty Name="StateFilingId" ColumnName="StateFilingId" />
+                <ScalarProperty Name="FilingRequestId" ColumnName="FilingRequestId" />
+                <ScalarProperty Name="FilingDate" ColumnName="FilingDate" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="NavigateFormEffectiveDate" ColumnName="NavigateFormEffectiveDate" />
+                <ScalarProperty Name="StateFilingStatusId" ColumnName="StateFilingStatusId" />
+                <ScalarProperty Name="StateFilingRequirementTypeId" ColumnName="StateFilingRequirementTypeId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="AuditLastModified" ColumnName="AuditLastModified" />
+                <ScalarProperty Name="AuditLastModifiedBy" ColumnName="AuditLastModifiedBy" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+                <ScalarProperty Name="ProductionReleaseDate" ColumnName="ProductionReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

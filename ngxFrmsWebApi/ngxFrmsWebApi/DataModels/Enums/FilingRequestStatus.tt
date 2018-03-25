@@ -1,0 +1,11 @@
+<#
+    string columnId = "FilingRequestStatusId";
+    string columnName = "Code";
+    string columnDescription = "Name";
+    string connectionString = null;
+    string tableName = "ref_FilingRequestStatus";
+    string command = "select [FilingRequestStatusId], [Code], [Name] from [frms].[ref_FilingRequestStatus] where [Active] = 1 order by [FilingRequestStatusId]";
+	string schema = "frms";
+	string whereclause = "Active = 1";
+#>
+<#@ include file="EnumGenerator.ttinclude" #> 
