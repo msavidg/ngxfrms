@@ -8,7 +8,7 @@ import { SharedModule } from '@app/shared';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
-import { FrmsService } from '@app/home/frms.service';
+import { ReferenceDataService } from '@app/shared/services/reference-data.service';
 
 @NgModule({
   imports: [
@@ -23,14 +23,8 @@ import { FrmsService } from '@app/home/frms.service';
     HomeComponent
   ],
   providers: [
-    FrmsService,
-    QuoteService,
-    { provide: 'BASE_URL', useFactory: getBaseUrl }
+    ReferenceDataService,
+    QuoteService
   ]
 })
 export class HomeModule { }
-
-export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
-}
-

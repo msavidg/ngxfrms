@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
-import { FrmsService } from '@app/home/frms.service';
+import { ReferenceDataService } from '@app/shared/services/reference-data.service';
+import { FilingRequestStatus } from '@app/home/filing-request-status.interface';
 import { HomeModel } from '@app/home/home-model.interface';
 
 @Component({
@@ -12,12 +13,12 @@ import { HomeModel } from '@app/home/home-model.interface';
 })
 export class HomeComponent implements OnInit {
 
-  quote: string;
-  isLoading: boolean;
-  isLoadingModel: boolean;
+  public quote: string;
+  public isLoading: boolean;
+  public isLoadingModel: boolean;
   public homeModel: HomeModel;
 
-  constructor(private quoteService: QuoteService, private frmsService: FrmsService) { }
+  constructor(private quoteService: QuoteService, private referenceDataService: ReferenceDataService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -26,8 +27,8 @@ export class HomeComponent implements OnInit {
       .subscribe((quote: string) => { this.quote = quote; });
 
       this.isLoadingModel = true;
-      this.frmsService.getHomeModel().pipe(finalize(() => { this.isLoadingModel = false; })).subscribe((homeModel: HomeModel) => {
-        this.homeModel = homeModel;
+      this.referenceDataService.getFilingRequestStauses().pipe(finalize(() => { this.isLoadingModel = false; })).subscribe((filingRequestStatuses: FilingRequestStatus[]) => {
+        this.homeModel.filingRequestStatuses = filingRequestStatuses;
       });
   }
 

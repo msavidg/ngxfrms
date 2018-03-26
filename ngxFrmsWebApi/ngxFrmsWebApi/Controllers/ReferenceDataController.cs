@@ -14,7 +14,7 @@ namespace ngxFrmsWebApi.Controllers
   public class ReferenceDataController : ApiController
   {
 
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public IEnumerable<FilingRequestStatus> GetFilingRequestStatuses()
     {
 
