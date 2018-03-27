@@ -14,7 +14,7 @@ namespace ngxFrmsWebApi.Controllers
   public class ReferenceDataController : ApiController
   {
 
-    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public IEnumerable<FilingRequestStatus> GetFilingRequestStatuses()
     {
 
@@ -22,6 +22,7 @@ namespace ngxFrmsWebApi.Controllers
 
       using (FrmsEntities frmsEntities = new FrmsEntities())
       {
+
         var statuses =
 
           from frs in frmsEntities.ref_FilingRequestStatus
@@ -37,7 +38,7 @@ namespace ngxFrmsWebApi.Controllers
 
           select frs;
 
-        foreach (var filingRequestStatus in filingRequestStatuses)
+        foreach (var filingRequestStatus in statuses)
         {
           filingRequestStatuses.Add(new FilingRequestStatus()
           {

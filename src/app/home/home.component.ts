@@ -13,22 +13,15 @@ import { HomeModel } from '@app/home/home-model.interface';
 })
 export class HomeComponent implements OnInit {
 
-  public quote: string;
   public isLoading: boolean;
-  public isLoadingModel: boolean;
-  public homeModel: HomeModel;
+  public filingRequestStatuses: Array<FilingRequestStatus>;
 
   constructor(private quoteService: QuoteService, private referenceDataService: ReferenceDataService) {}
 
   ngOnInit() {
-    this.isLoading = true;
-    this.quoteService.getRandomQuote({ category: 'dev' })
-      .pipe(finalize(() => { this.isLoading = false; }))
-      .subscribe((quote: string) => { this.quote = quote; });
-
-      this.isLoadingModel = true;
-      this.referenceDataService.getFilingRequestStauses().pipe(finalize(() => { this.isLoadingModel = false; })).subscribe((filingRequestStatuses: FilingRequestStatus[]) => {
-        this.homeModel.filingRequestStatuses = filingRequestStatuses;
+      this.isLoading = true;
+      this.referenceDataService.getFilingRequestStauses().pipe(finalize(() => { this.isLoading = false; })).subscribe((filingRequestStatuses: FilingRequestStatus[]) => {
+        this.filingRequestStatuses = filingRequestStatuses;
       });
   }
 

@@ -9,6 +9,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 import { ReferenceDataService } from '@app/shared/services/reference-data.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ReferenceDataService } from '@app/shared/services/reference-data.servic
     CoreModule,
     SharedModule,
     HomeRoutingModule,
-    HttpModule
+    HttpModule,
+    NgbModule
   ],
   declarations: [
     HomeComponent
