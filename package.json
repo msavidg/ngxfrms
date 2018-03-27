@@ -33,8 +33,11 @@
     "bootstrap": "4.0.0",
     "core-js": "^2.5.2",
     "lodash": "^4.17.4",
+    "npm": "^5.8.0",
     "npx": "^10.0.1",
     "rxjs": "^5.5.7",
+    "to": "^0.2.9",
+    "update": "^0.7.4",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {

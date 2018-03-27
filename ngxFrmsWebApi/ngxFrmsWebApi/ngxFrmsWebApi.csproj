@@ -224,7 +224,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61262</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/ngxfrms/webapi</IISUrl>
+          <IISUrl>http://localhost/ngxfrms</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
